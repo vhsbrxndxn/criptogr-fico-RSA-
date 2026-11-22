@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RSA Aero — Cifrado y Descifrado en Matemática Discreta</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Fondo atmosférico Frutiger Aero con orbes translúcidos -->
+  <div class="aero-fondo" aria-hidden="true">
+    <span class="orbe orbe-1"></span>
+    <span class="orbe orbe-2"></span>
+    <span class="orbe orbe-3"></span>
+    <span class="orbe orbe-4"></span>
+  </div>
+
+  <!-- VISTA 1: Portada formal de presentación -->
+  <section id="vista-portada" class="portada-contenedor">
+    <article class="panel-vidrio portada-tarjeta">
+      <div class="portada-insignia">
+        <span>Universidad de Costa Rica — Sede del Caribe</span>
+      </div>
+
+      <p class="portada-curso">IF0005 — Matemática Discreta</p>
+      <h1 class="portada-titulo">Cifrado y Descifrado de Mensajes mediante el Método RSA</h1>
+      <p class="portada-subtitulo">
+        Herramienta interactiva de criptografía de clave pública con trazabilidad paso a paso
+        del algoritmo de Euclides, algoritmo extendido de Euclides y potenciación modular.
+      </p>
+
+      <div class="portada-metadatos">
+        <div class="meta-bloque">
+          <h2 class="meta-etiqueta">Integrantes</h2>
+          <ul class="lista-integrantes">
+            <li>Brandon Enrique Vega Edwards</li>
+          </ul>
+        </div>
+        <div class="meta-bloque">
+          <h2 class="meta-etiqueta">Fecha de entrega</h2>
+          <p class="meta-valor">Domingo, 22 de noviembre de 2026, 23:59</p>
+          <h2 class="meta-etiqueta meta-espacio">Defensa presencial</h2>
+          <p class="meta-valor">25 de noviembre de 2026</p>
+        </div>
+      </div>
+
+      <div class="portada-acciones">
+        <button id="btn-ingresar" type="button" class="btn-gel btn-primario btn-grande">
+          Iniciar herramienta RSA
+        </button>
+      </div>
+
+      <nav class="portada-docs" aria-label="Documentación del proyecto">
+        <a href="docs/manual-usuario.pdf" target="_blank" rel="noopener" class="btn-gel btn-secundario">
+          Manual de usuario (PDF)
+        </a>
+        <a href="docs/investigacion-rsa.pdf" target="_blank" rel="noopener" class="btn-gel btn-secundario">
+          Investigación: RSA en la vida cotidiana (PDF)
+        </a>
+        <a href="docs/codigo-fuente.pdf" target="_blank" rel="noopener" class="btn-gel btn-secundario">
+          Código fuente (PDF)
+        </a>
+      </nav>
+    </article>
+  </section>
+
+  <!-- VISTA 2: Aplicación principal RSA -->
+  <div id="vista-aplicacion" class="app-contenedor oculto">
+    <header class="panel-vidrio barra-superior">
+      <div class="marca">
+        <div>
+          <strong class="marca-titulo">RSA Aero</strong>
+          <span class="marca-subtitulo">Matemática Discreta — Laboratorio Criptográfico</span>
+        </div>
+      </div>
+
+      <nav class="barra-nav" aria-label="Accesos rápidos y documentación">
+        <a href="docs/manual-usuario.pdf" target="_blank" rel="noopener" class="btn-gel btn-compacto">
+          Manual (PDF)
+        </a>
+        <a href="docs/investigacion-rsa.pdf" target="_blank" rel="noopener" class="btn-gel btn-compacto">
+          Investigación: RSA en la vida cotidiana
+        </a>
+        <a href="docs/codigo-fuente.pdf" target="_blank" rel="noopener" class="btn-gel btn-compacto">
+          Código fuente (PDF)
+        </a>
+        <button id="btn-ver-codigo" type="button" class="btn-gel btn-compacto">
+          Ver código JS
+        </button>
+        <button id="btn-volver-portada" type="button" class="btn-gel btn-compacto btn-oscuro">
+          Portada
+        </button>
+      </nav>
+    </header>
+
+    <main class="app-rejilla">
+      <!-- MÓDULO 1: Generación y validación de claves -->
+      <section class="panel-vidrio modulo modulo-claves" aria-labelledby="titulo-claves">
+        <div class="modulo-encabezado">
+          <div>
+            <span class="paso-etiqueta">Paso 1</span>
+            <h2 id="titulo-claves">Generación y validación de claves RSA</h2>
+          </div>
+          <div class="acciones-rapidas">
+            <button id="btn-generar-primos" type="button" class="btn-gel btn-secundario btn-compacto">
+              Generar primos p y q
+            </button>
+            <button id="btn-cargar-demo" type="button" class="btn-gel btn-secundario btn-compacto">
+              Ejemplo guía (17, 19, 5)
+            </button>
+            <button id="btn-limpiar-todo" type="button" class="btn-gel btn-secundario btn-compacto">
+              Limpiar
+            </button>
+          </div>
+        </div>
+
+        <form id="form-claves" class="formulario-claves" novalidate>
+          <div class="campo-grupo">
+            <label for="input-p">Número primo p</label>
+            <input id="input-p" name="p" type="text" inputmode="numeric" placeholder="Ej. 17" autocomplete="off">
+          </div>
+
+          <div class="campo-grupo">
+            <label for="input-q">Número primo q</label>
+            <input id="input-q" name="q" type="text" inputmode="numeric" placeholder="Ej. 19" autocomplete="off">
+          </div>
+
+          <div class="campo-grupo">
+            <label for="input-e">Exponente público e (opcional: se autogenera si se deja vacío)</label>
+            <div class="campo-inline">
+              <input id="input-e" name="e" type="text" inputmode="numeric" placeholder="Ej. 5" autocomplete="off">
+              <button id="btn-generar-e" type="button" class="btn-gel btn-secundario btn-compacto">
+                Sugerir e
+              </button>
+            </div>
+          </div>
+
+          <div class="campo-accion">
+            <button type="submit" class="btn-gel btn-primario">
+              Calcular claves
+            </button>
+          </div>
+        </form>
+
+        <p id="mensaje-claves" class="aviso" role="status" aria-live="polite"></p>
+
+        <div class="tarjetas-claves">
+          <div class="clave-caja">
+            <span class="clave-etiqueta">Módulo n = p × q</span>
+            <output id="res-n" class="clave-valor">—</output>
+          </div>
+          <div class="clave-caja">
+            <span class="clave-etiqueta">Función de Euler φ(n) = (p-1)(q-1)</span>
+            <output id="res-phi" class="clave-valor">—</output>
+          </div>
+          <div class="clave-caja clave-destacada">
+            <span class="clave-etiqueta">Clave pública (n, e)</span>
+            <output id="res-publica" class="clave-valor">—</output>
+          </div>
+          <div class="clave-caja clave-privada">
+            <span class="clave-etiqueta">Clave privada (n, d)</span>
+            <output id="res-privada" class="clave-valor">—</output>
+          </div>
+        </div>
+
+        <p id="res-verificacion" class="verificacion-formula"></p>
+
+        <details class="acordeon-pasos">
+          <summary>Ver trazabilidad matemática (Algoritmo de Euclides y Euclides Extendido)</summary>
+          <div class="pasos-rejilla">
+            <div>
+              <h3>Algoritmo de Euclides — mcd(e, φ(n))</h3>
+              <ol id="lista-euclides" class="lista-traza"></ol>
+            </div>
+            <div>
+              <h3>Algoritmo Extendido — Inverso multiplicativo d</h3>
+              <ol id="lista-euclides-ext" class="lista-traza"></ol>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <!-- MÓDULO 2: Cifrado -->
+      <section class="panel-vidrio modulo" aria-labelledby="titulo-cifrar">
+        <div class="modulo-encabezado">
+          <div>
+            <span class="paso-etiqueta">Paso 2</span>
+            <h2 id="titulo-cifrar">Cifrar mensaje (C ≡ M^e mód n)</h2>
+          </div>
+        </div>
+
+        <p class="nota-didactica">
+          Representación numérica: cada carácter se convierte a su código Unicode/ASCII mediante
+          <code>charCodeAt()</code> y se valida que <strong>0 ≤ M &lt; n</strong> antes de cifrar.
+        </p>
+
+        <form id="form-cifrar" novalidate>
+          <div class="campo-grupo">
+            <label for="input-mensaje">Mensaje original (texto plano)</label>
+            <textarea id="input-mensaje" name="mensaje" rows="3" placeholder="Escribe un mensaje, por ejemplo: HOLA"></textarea>
+          </div>
+
+          <div class="acciones-fila">
+            <button type="submit" class="btn-gel btn-primario">Cifrar mensaje</button>
+            <button id="btn-enviar-a-descifrar" type="button" class="btn-gel btn-secundario">
+              Pasar a descifrado
+            </button>
+            <button id="btn-copiar-cifrado" type="button" class="btn-gel btn-secundario">
+              Copiar cifrado
+            </button>
+          </div>
+        </form>
+
+        <p id="mensaje-cifrado-estado" class="aviso" role="status" aria-live="polite"></p>
+
+        <div class="bloque-salida">
+          <span class="salida-etiqueta">Representación numérica (bloques M)</span>
+          <output id="salida-bloques-m" class="codigo-salida">—</output>
+        </div>
+
+        <div class="bloque-salida">
+          <span class="salida-etiqueta">Mensaje cifrado (bloques C)</span>
+          <output id="salida-cifrado" class="codigo-salida">—</output>
+        </div>
+
+        <details class="acordeon-pasos">
+          <summary>Ver detalle carácter por carácter del cifrado</summary>
+          <div class="tabla-envoltura">
+            <table class="tabla-datos">
+              <thead>
+                <tr>
+                  <th>Carácter</th>
+                  <th>Código M</th>
+                  <th>Operación</th>
+                  <th>Cifrado C</th>
+                </tr>
+              </thead>
+              <tbody id="tabla-cifrado-body"></tbody>
+            </table>
+          </div>
+        </details>
+      </section>
+
+      <!-- MÓDULO 3: Descifrado -->
+      <section class="panel-vidrio modulo" aria-labelledby="titulo-descifrar">
+        <div class="modulo-encabezado">
+          <div>
+            <span class="paso-etiqueta">Paso 3</span>
+            <h2 id="titulo-descifrar">Descifrar mensaje (M ≡ C^d mód n)</h2>
+          </div>
+        </div>
+
+        <form id="form-descifrar" novalidate>
+          <div class="campo-grupo">
+            <label for="input-cifrado">Bloques cifrados C (separados por comas o espacios)</label>
+            <textarea id="input-cifrado" name="cifrado" rows="3" placeholder="Ej. 21, 129, 247, 12"></textarea>
+          </div>
+
+          <div class="campo-check">
+            <input id="check-clave-manual" type="checkbox">
+            <label for="check-clave-manual">Usar una clave privada (n, d) manual distinta a la generada</label>
+          </div>
+
+          <div id="campos-clave-manual" class="campos-manuales oculto">
+            <div class="campo-grupo">
+              <label for="input-n-manual">Módulo n</label>
+              <input id="input-n-manual" type="text" inputmode="numeric" placeholder="Ej. 323" autocomplete="off">
+            </div>
+            <div class="campo-grupo">
+              <label for="input-d-manual">Exponente privado d</label>
+              <input id="input-d-manual" type="text" inputmode="numeric" placeholder="Ej. 173" autocomplete="off">
+            </div>
+          </div>
+
+          <div class="acciones-fila">
+            <button type="submit" class="btn-gel btn-primario">Descifrar mensaje</button>
+          </div>
+        </form>
+
+        <p id="mensaje-descifrado-estado" class="aviso" role="status" aria-live="polite"></p>
+
+        <div class="bloque-salida">
+          <span class="salida-etiqueta">Bloques numéricos recuperados (M)</span>
+          <output id="salida-bloques-descifrados" class="codigo-salida">—</output>
+        </div>
+
+        <div class="bloque-salida salida-destacada">
+          <span class="salida-etiqueta">Mensaje original reconstruido</span>
+          <output id="salida-recuperado" class="texto-recuperado">—</output>
+        </div>
+
+        <p id="res-comparacion" class="verificacion-formula"></p>
+
+        <details class="acordeon-pasos">
+          <summary>Ver detalle bloque por bloque del descifrado</summary>
+          <div class="tabla-envoltura">
+            <table class="tabla-datos">
+              <thead>
+                <tr>
+                  <th>Cifrado C</th>
+                  <th>Operación</th>
+                  <th>Código M</th>
+                  <th>Carácter</th>
+                </tr>
+              </thead>
+              <tbody id="tabla-descifrado-body"></tbody>
+            </table>
+          </div>
+        </details>
+      </section>
+    </main>
+
+    <footer class="panel-vidrio pie-pagina">
+      <p>Método RSA — Aritmética entera exacta (BigInt) en JavaScript puro.</p>
+    </footer>
+  </div>
+
+  <!-- MODAL: Visor integrado del código fuente JavaScript -->
+  <div id="modal-codigo" class="modal-fondo oculto" role="dialog" aria-modal="true" aria-labelledby="titulo-modal-codigo">
+    <div class="panel-vidrio modal-ventana">
+      <div class="modal-encabezado">
+        <h2 id="titulo-modal-codigo">Código fuente matemático (js/rsa-math.js)</h2>
+        <button id="btn-cerrar-modal" type="button" class="btn-gel btn-compacto btn-oscuro">Cerrar</button>
+      </div>
+      <p id="estado-visor-codigo" class="aviso"></p>
+      <pre class="visor-codigo"><code id="visor-codigo"></code></pre>
+    </div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

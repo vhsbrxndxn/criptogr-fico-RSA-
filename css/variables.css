@@ -1,0 +1,56 @@
+/* Paleta temática: Terminal Ámbar (Ganache Cipher), Retrofuturista Criptográfico */
+:root {
+  /* Colores exactos de la paleta proporcionada */
+  --color-ganache: #3E1613;
+  --color-waffle: #7C3F20;
+  --color-honeycomb: #D38C3A;
+  --color-vanilla: #F1D8B8;
+  --color-maple: #B56A2B;
+
+  /* Derivados profundos para contraste CRT sin usar negro puro */
+  --color-fondo: #180705;
+  --color-fondo-elevado: #240B09;
+  --color-superficie: rgba(62, 22, 19, 0.86);
+  --color-superficie-alt: rgba(36, 11, 9, 0.92);
+  --color-superficie-activa: rgba(124, 63, 32, 0.34);
+
+  /* Roles de texto (WCAG AA/AAA sobre superficies oscuras) */
+  --color-texto-principal: var(--color-vanilla);
+  --color-texto-secundario: #D6B48C;
+  --color-texto-acento: var(--color-honeycomb);
+  --color-texto-oscuro: #180705;
+
+  /* Bordes y resplandores de fósforo ámbar */
+  --color-borde: rgba(181, 106, 43, 0.45);
+  --color-borde-fuerte: rgba(211, 140, 58, 0.85);
+  --color-brillo-ambar: rgba(211, 140, 58, 0.28);
+  --color-brillo-fuerte: rgba(241, 216, 184, 0.35);
+
+  /* Estados con contraste WCAG AA */
+  --color-exito-texto: #9EE6A8;
+  --color-exito-fondo: rgba(30, 68, 39, 0.72);
+  --color-alerta-texto: var(--color-vanilla);
+  --color-alerta-fondo: rgba(181, 106, 43, 0.32);
+  --color-error-texto: #FF9C8A;
+  --color-error-fondo: rgba(126, 26, 20, 0.78);
+
+  /* Tipografías técnicas y monoespaciadas */
+  --fuente-ui: "Bahnschrift", "Eurostile", "Segoe UI", system-ui, sans-serif;
+  --fuente-codigo: "Cascadia Mono", "Consolas", "Lucida Console", monospace;
+
+  /* Geometría angular retrofuturista */
+  --radio-panel: 4px;
+  --radio-control: 3px;
+
+  --espacio-xs: 0.45rem;
+  --espacio-sm: 0.85rem;
+  --espacio-md: 1.35rem;
+  --espacio-lg: 2rem;
+
+  --sombra-panel:
+    0 14px 34px rgba(0, 0, 0, 0.55),
+    inset 0 0 0 1px rgba(241, 216, 184, 0.08),
+    inset 0 0 28px rgba(24, 7, 5, 0.65);
+
+  --sombra-fosforo: 0 0 12px rgba(211, 140, 58, 0.32);
+}
